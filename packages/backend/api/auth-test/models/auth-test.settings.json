@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "auth_tests",
+  "info": {
+    "name": "AuthTest"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "field2": {
+      "type": "richtext"
+    }
+  }
+}
