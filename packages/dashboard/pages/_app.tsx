@@ -3,7 +3,11 @@ import React from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '@/components/Theme'
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps, AppContext } from 'next/app'
+import { parseCookies } from 'nookies'
+import { NextPageContext } from 'next'
+import Router from 'next/router'
+import App from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
@@ -29,16 +33,45 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
+// Redirects to location
+function redirectUser(ctx: NextPageContext, location: string) {
+  if (ctx.req) {
+    ctx?.res?.writeHead(302, { Location: location })
+    ctx?.res?.end()
+  } else {
+    Router.push(location)
+  }
+}
 
-//   return { ...appProps }
-// }
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const { Component, ctx } = appContext
 
+  let pageProps = {}
+
+  //Get cookies
+  const cookies = parseCookies(ctx)
+
+  //Get JWT
+  const jwt = cookies?.jwt ?? undefined
+
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  if (Component.getInitialProps) {
+    pageProps = await App.getInitialProps(appContext)
+  }
+
+  //If no jwt
+  if (!jwt) {
+    const re = new RegExp('^/auth/', 'i')
+    const match = re.test(ctx.pathname)
+    //If no jwt and is auth path, go back to home
+    if (match) {
+      redirectUser(ctx, '/')
+    }
+  }
+
+  return {
+    pageProps,
+    //navigation
+  }
+}
 export default MyApp
