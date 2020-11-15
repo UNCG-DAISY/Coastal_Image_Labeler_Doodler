@@ -5,8 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '@/components/Theme'
 import type { AppProps, AppContext } from 'next/app'
 import { parseCookies } from 'nookies'
-import { NextPageContext } from 'next'
-import Router from 'next/router'
+import { redirectUser } from '@/utils/redirectUser'
 import App from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -34,14 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 // Redirects to location
-function redirectUser(ctx: NextPageContext, location: string) {
-  if (ctx.req) {
-    ctx?.res?.writeHead(302, { Location: location })
-    ctx?.res?.end()
-  } else {
-    Router.push(location)
-  }
-}
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const { Component, ctx } = appContext
