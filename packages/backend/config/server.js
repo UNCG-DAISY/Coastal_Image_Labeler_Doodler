@@ -6,4 +6,5 @@ module.exports = ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET', '77356e31241a4b1fc9d2f525def55c3f'),
     },
   },
+  url: 'https://v4.coastalimagelabeler.science'
 });

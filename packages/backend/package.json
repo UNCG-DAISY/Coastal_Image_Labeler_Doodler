@@ -8,7 +8,9 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "sts": "sts ./api ./node_modules/strapi-plugin-upload/models/ -o ./interfaces"
+    "sts": "sts ./api ./node_modules/strapi-plugin-upload/models/ -o ./interfaces",
+    "pm2": "NODE_ENV=production pm2 start ecosystem.config.js",
+    "pm2:dev": "pm2 start ecosystem.config.js"
   },
   "devDependencies": {},
   "dependencies": {
