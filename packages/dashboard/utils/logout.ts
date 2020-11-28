@@ -1,9 +1,12 @@
 import Router from 'next/router'
 import { destroyCookie } from 'nookies'
 
+const keys = ['jwt', 'user', 'access_token']
+
 export async function logout() {
-  destroyCookie(null, 'jwt', { path: '/' })
-  destroyCookie(null, 'user', { path: '/' })
+  for (const key of keys) {
+    destroyCookie(null, key, { path: '/' })
+  }
 
   if (localStorage) {
     localStorage.clear()

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/test-collection-types",
+      "handler": "test-collection-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/test-collection-types/count",
+      "handler": "test-collection-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/test-collection-types/:id",
+      "handler": "test-collection-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/test-collection-types",
+      "handler": "test-collection-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/test-collection-types/:id",
+      "handler": "test-collection-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/test-collection-types/:id",
+      "handler": "test-collection-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

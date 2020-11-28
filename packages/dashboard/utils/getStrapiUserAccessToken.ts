@@ -1,8 +1,4 @@
-import { GetServerSidePropsContext } from 'next'
-import { ParsedUrlQuery } from 'querystring'
-
-export async function accessToken(
-  ctx: GetServerSidePropsContext<ParsedUrlQuery>,
+export async function getStrapiUserAccessToken(
   access_token: string,
   provider: string
 ) {
