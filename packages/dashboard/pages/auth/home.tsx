@@ -17,6 +17,7 @@ export default function Home(props: {
       </p>
       <br />
       <Button onClick={logout}>logout</Button>
+      <Button href="/">Index</Button>
       <Button href="/auth/home">Home</Button>
       <Button href={`/auth/random/${props.random}`}>Random</Button>
       <Button
@@ -28,7 +29,7 @@ export default function Home(props: {
         Me
       </Button>
 
-      <ImageUpload />
+      {false && <ImageUpload />}
     </div>
   )
 }
