@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groups",
+  "info": {
+    "name": "group",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "images": {
+      "private": true,
+      "collection": "image",
+      "via": "groups",
+      "dominant": true
+    }
+  }
+}
