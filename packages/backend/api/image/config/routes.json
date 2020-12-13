@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/createmany",
+      "handler": "image.createMany",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
