@@ -2,10 +2,10 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from '@/components/Theme'
+import { theme } from '@/components/Theme'
 import type { AppProps, AppContext } from 'next/app'
 import { parseCookies } from 'nookies'
-import { redirectUser } from '@/utils/redirectUser'
+// import { redirectUser } from '@/utils/redirectUser'
 import App from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -54,9 +54,10 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   if (!jwt) {
     const re = new RegExp('^/auth/', 'i')
     const match = re.test(ctx.pathname)
+
     //If no jwt and is auth path, go back to home
     if (match) {
-      redirectUser(ctx, '/')
+      //redirectUser(ctx, '/')
     }
   }
 
