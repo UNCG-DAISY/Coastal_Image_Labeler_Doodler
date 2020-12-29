@@ -28,12 +28,15 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.0",
     "next": "latest",
     "nookies": "^2.5.0",
     "react": "^16.13.1",
+    "react-canvas-draw": "^1.1.1",
     "react-dom": "^16.13.1",
     "react-image-annotate": "^1.7.11",
+    "react-sketch-canvas": "^5.3.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
