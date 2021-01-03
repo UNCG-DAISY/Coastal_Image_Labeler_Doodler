@@ -27,9 +27,9 @@ export const contactUs: NavItem = {
   },
 }
 
-export const login: NavItem = {
+export const indexPage: NavItem = {
   name: 'Login',
-  route: '/login',
+  route: '/',
   icon: (props) => <LockOpenIcon {...props} />,
   style: {
     color: theme.palette.secondary.main,
@@ -90,7 +90,7 @@ const defaultNavItems = {
 export const navigationItems = {
   defaultNavItems: defaultNavItems,
   landingPage: {
-    center: [login, contactUs],
+    center: [indexPage, contactUs],
     right: [],
   },
 }

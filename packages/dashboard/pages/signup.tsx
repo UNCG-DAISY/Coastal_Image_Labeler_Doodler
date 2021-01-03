@@ -45,12 +45,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const Home = (): JSX.Element => {
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors, watch, getValues } = useForm()
   const onSubmit = (data) => {
     console.log('errors', errors)
     console.log('data', data)
   }
 
+  console.log(errors)
   const classes = useStyles()
 
   return (
@@ -70,13 +71,34 @@ export const Home = (): JSX.Element => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign Up
             </Typography>
+
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
+                //required
+                fullWidth
+                id="username"
+                label="Username (Name that others will see)"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                inputRef={register({ required: 'username required' })}
+                helperText={
+                  errors.username ? (
+                    <a color="error.main">{errors.username.message}</a>
+                  ) : (
+                    ''
+                  )
+                }
+              />
+              {/* {errors.username && <p>{errors.username.message}</p>} */}
+              <TextField
+                variant="outlined"
+                margin="normal"
+                //required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -84,19 +106,47 @@ export const Home = (): JSX.Element => {
                 autoComplete="email"
                 autoFocus
                 inputRef={register({ required: true })}
+                helperText="Used for logging in"
               />
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
+                //required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                inputRef={register({ required: true })}
+                inputRef={register({ required: 'Password required' })}
+                error={watch('password') !== watch('confirmPassword')}
               />
+              {errors.password && <p>{errors.password.message}</p>}
+              <TextField
+                variant="outlined"
+                margin="normal"
+                //required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                inputRef={register({
+                  validate: (value) => {
+                    if (value === getValues('password')) {
+                      return true
+                    } else {
+                      return "Password fields don't match"
+                    }
+                  },
+
+                  required: 'Password required',
+                  //minLength: { value: 8, message: 'Too short' }
+                })}
+              />
+              {errors.confirmPassword && (
+                <p>{errors.confirmPassword.message}</p>
+              )}
               <Button
                 type="submit"
                 fullWidth
@@ -104,7 +154,7 @@ export const Home = (): JSX.Element => {
                 color="primary"
                 className={classes.submit}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -113,8 +163,8 @@ export const Home = (): JSX.Element => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link href="/" variant="body2">
+                    {'Already have an account? Login'}
                   </Link>
                 </Grid>
               </Grid>
